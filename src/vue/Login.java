@@ -27,7 +27,7 @@ public class Login {
 	  tf1 = new JTextField();
 	  p1 = new JPasswordField();
 	  btn1 = new JButton("Login");
-	 
+	   
 	  l1.setBounds(80, 30, 400, 30);
 	  l2.setBounds(80, 70, 200, 30);
 	  l3.setBounds(80, 110, 200, 30);
