@@ -3,7 +3,18 @@
   <groupId>ProjetGaber</groupId>
   <artifactId>ProjetGaber</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <build>
+  
+  
+  <dependencies>
+          <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0</version>
+        </dependency>
+  </dependencies>
+  
+  
+   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
@@ -16,4 +27,6 @@
       </plugin>
     </plugins>
   </build>
+  
+  
 </project>
