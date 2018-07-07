@@ -1,13 +1,15 @@
 package refClass;
 
+import java.util.Calendar;
+
 public class Client {
 	private int id;
 	private String nom;
 	private String prenom;
-	private String date;
+	private Calendar date;
 	
 	
-	public Client(int id, String nom, String prenom, String date) {
+	public Client(int id, String nom, String prenom, Calendar date) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -46,12 +48,12 @@ public class Client {
 	}
 
 
-	public String getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
 
-	public void setDate(String date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 	

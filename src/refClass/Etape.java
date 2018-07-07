@@ -1,12 +1,14 @@
 package refClass;
 
+import java.util.Calendar;
+
 public class Etape {
 
 	private int ordre;
-	private String dateEtape;
+	private Calendar dateEtape;
 	private int Duree;
 	
-	public Etape(int ordre, String dateEtape, int duree) {
+	public Etape(int ordre, Calendar dateEtape, int duree) {
 		super();
 		this.ordre = ordre;
 		this.dateEtape = dateEtape;
@@ -21,11 +23,11 @@ public class Etape {
 		this.ordre = ordre;
 	}
 
-	public String getDateEtape() {
+	public Calendar getDateEtape() {
 		return dateEtape;
 	}
 
-	public void setDateEtape(String dateEtape) {
+	public void setDateEtape(Calendar dateEtape) {
 		this.dateEtape = dateEtape;
 	}
 
