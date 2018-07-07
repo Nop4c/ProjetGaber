@@ -15,8 +15,9 @@ public class ConnexionBDD {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
            
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ROOT","admin","azerty");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:root","admin","azerty");
             pstmt = con.prepareStatement("SELECT * FROM CLIENT");
+            
             rs = pstmt.executeQuery();
             while(rs.next()) {
             	System.out.println(rs.getString(2));
