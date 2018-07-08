@@ -27,12 +27,12 @@ public class CreateUser {
 	 private JOptionPane jop2;
 	 
 	public  CreateUser() {
-	  JFrame frame = new JFrame("CrÃ©ation d'un compte");
-	  l1 = new JLabel("CrÃ©ation d'un compte");
+	  JFrame frame = new JFrame("Création d'un compte");
+	  l1 = new JLabel("Création d'un compte");
 	  l1.setFont(new Font("Arial", Font.BOLD, 20));
 	 
 	  l2 = new JLabel("Nom");
-	  l3 = new JLabel("PrÃ©nom");
+	  l3 = new JLabel("Prénom");
 	  l4 = new JLabel("Identifiant");
 	  l5 = new JLabel("Mot de passe");
 	  tf1 = new JTextField();
@@ -84,7 +84,7 @@ public class CreateUser {
 		    		
 		    	
 		    	jop1 = new JOptionPane();
-		    	jop1.showMessageDialog(null, "Votre compte a bien Ã©tÃ© crÃ©Ã©", "Information", JOptionPane.INFORMATION_MESSAGE);
+		    	jop1.showMessageDialog(null, "Votre compte a bien été créé", "Information", JOptionPane.INFORMATION_MESSAGE);
 		    	new Login();
 		    	frame.dispose();
 		    	}

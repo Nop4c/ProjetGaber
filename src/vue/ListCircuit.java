@@ -22,11 +22,11 @@ public class ListCircuit {
 	  l1 = new JLabel("Liste des circuits");
 	  l1.setFont(new Font("Arial", Font.BOLD, 20));
 	  l2 = new JLabel("Bienvenue Nopac !");
-	  String [] title = {"Description", "Ville de dÃ©part", "Pays de dÃ©part", "Ville d'arrivÃ©e", "Pays d'arrivÃ©e", 
-			  "Date de dÃ©part", "Nombre de place disponible","DurÃ©e", "Prix"};
+	  String [] title = {"Description", "Ville de départ", "Pays de départ", "Ville d'arrivée", "Pays d'arrivée", 
+			  "Date de départ", "Nombre de place disponible","Durée", "Prix"};
 	 
 	  btn1 = new JButton("En savoir plus");
-	  btn2 = new JButton("DÃ©connexion");
+	  btn2 = new JButton("Déconnexion");
 	  
 	  Object[][] data = {{"Cysboy", "28 ans", "1.80 m","BZHHydde", "28 ans", "1.80 m","IamBow", "24 ans", "1.90 m"}, {"Cysboy", "28 ans", "1.80 m","BZHHydde", "28 ans", "1.80 m","IamBow", "24 ans", "1.90 m"}};
 	     
@@ -39,6 +39,7 @@ public class ListCircuit {
 	  btn1.setBounds(600, 850, 150, 30);
 	  btn2.setBounds(1700, 70, 150, 30);
 	  scrollPane.setBounds(100,130,1600,700);
+	  
 	  frame.add(l1);
 	  frame.add(l2);
 	  frame.add(btn1);
@@ -56,8 +57,7 @@ public class ListCircuit {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		       new Login();
-		       frame.dispose();
+		       new InfoCircuit();
 		    }
 	 });
 	  

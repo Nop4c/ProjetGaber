@@ -30,7 +30,7 @@ public class Login {
 	  tf1 = new JTextField();
 	  p1 = new JPasswordField();
 	  btn1 = new JButton("Valider");
-	  btn2 = new JButton("CrÃ©er un compte");
+	  btn2 = new JButton("Créer un compte");
 	   
 	  l1.setBounds(80, 30, 400, 30);
 	  l2.setBounds(80, 70, 200, 30);
@@ -58,8 +58,13 @@ public class Login {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
+		    	if("admin".equals(tf1.getText()) && ("admin".equals(String.valueOf(p1.getPassword())))){
+		    		new AdminPage();
+		    		frame.dispose();
+		    	}else {
 		    	new ListCircuit();
 		     	frame.dispose();
+		    	}
 		    }
 	 });
 	  

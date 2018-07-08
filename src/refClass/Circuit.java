@@ -2,7 +2,6 @@ package refClass;
 
 public class Circuit {
 
-	private int id;
 	private String descriptif;
 	private String villeDepart;
 	private String paysDepart;
@@ -13,10 +12,9 @@ public class Circuit {
 	private int duree;
 	private int prixInscription;
 	
-	public Circuit(int id, String descriptif, String villeDepart, String paysDepart, String villeArrivee,
+	public Circuit(String descriptif, String villeDepart, String paysDepart, String villeArrivee,
 			String paysArrivee, String dateDepart, int nbrPlaceDisponible, int duree, int prixInscription) {
 		super();
-		this.id = id;
 		this.descriptif = descriptif;
 		this.villeDepart = villeDepart;
 		this.paysDepart = paysDepart;
@@ -26,14 +24,6 @@ public class Circuit {
 		this.nbrPlaceDisponible = nbrPlaceDisponible;
 		this.duree = duree;
 		this.prixInscription = prixInscription;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getDescriptif() {
