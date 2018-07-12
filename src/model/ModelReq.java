@@ -156,6 +156,7 @@ public class ModelReq {
 		 closeBDD();
 		
 	}
+<<<<<<< HEAD
 	public List <Etape> getListEtape(Integer id) throws SQLException {
 		List <Etape> listEtape = new ArrayList<>();
 		 openBDD();
@@ -171,5 +172,18 @@ public class ModelReq {
 		 closeBDD();
 		 return listEtape;
 		 
+=======
+	public void deleteCircuit(Integer id) throws SQLException {
+		 openBDD();
+		
+		 
+		 pstmt = con.prepareStatement("Delete From Circuit WHERE identifiant = ?");
+		 pstmt.setInt(1, id);
+
+		 pstmt.executeUpdate();
+
+		 closeBDD();
+		
+>>>>>>> refs/remotes/origin/master
 	}
 }

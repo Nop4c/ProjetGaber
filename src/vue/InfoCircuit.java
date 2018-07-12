@@ -30,14 +30,14 @@ public class InfoCircuit {
 		l1 = new JLabel("Information circuit : Despcriptif");
 		l1.setFont(new Font("Arial", Font.BOLD, 20));
 
-		l3 = new JLabel("Ville dÈpart, PaysDÈpart 	------>  	VilleArrivÈ, PaysArrivÈe");
+		l3 = new JLabel("Ville d√©part, PaysD√©part 	------>  	VilleArriv√©, PaysArriv√©e");
 		l4 = new JLabel("Etapes ");
-		l5 = new JLabel("RÈservation");
+		l5 = new JLabel("R√©servation");
 		l6 = new JLabel("Nombre de place : ");
 		tf1 = new JTextField();
 		tf2 = new JTextField();
 
-		btn1 = new JButton("RÈservation");
+		btn1 = new JButton("R√©servation");
 
 		l1.setBounds(80, 30, 400, 30);
 		l3.setBounds(80, 110, 1000, 30);
@@ -67,10 +67,10 @@ public class InfoCircuit {
 			public void actionPerformed(ActionEvent e)
 			{
 				jop1 = new JOptionPane();			
-				int option = jop1.showConfirmDialog(null, "Etes-vous sur de vouloir rÈservÈ "+ tf1.getText() +" place pour le circuit  ?", "RÈservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int option = jop1.showConfirmDialog(null, "Etes-vous sur de vouloir r√©serv√© "+ tf1.getText() +" place pour le circuit  ?", "R√©servation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (option == 0) {
 					jop2 = new JOptionPane();
-					jop2.showMessageDialog(null, "Payement AcceptÈ  , RÈsservation validÈe", "Information", JOptionPane.INFORMATION_MESSAGE);
+					jop2.showMessageDialog(null, "Payement Accept√©  , R√©sservation valid√©e", "Information", JOptionPane.INFORMATION_MESSAGE);
 					//requete
 					frame.dispose();
 				}
