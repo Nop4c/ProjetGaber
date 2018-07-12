@@ -112,6 +112,8 @@ public class AdminPage {
 			public void actionPerformed(ActionEvent e)
 			{
 				int row = tableau.getSelectedRow();
+				System.out.println(tableau.getValueAt(row, 0).toString());
+				System.out.println(tableau.getValueAt(row, 5).toString());
 				Circuit circuit = new Circuit(tableau.getValueAt(row, 0).toString(), tableau.getValueAt(row, 1).toString(), tableau.getValueAt(row, 2).toString(), tableau.getValueAt(row, 3).toString(), 
 						tableau.getValueAt(row, 4).toString(), stringToCalendar(tableau.getValueAt(row, 5).toString()), Integer.valueOf(tableau.getValueAt(row, 6).toString()), Integer.valueOf(tableau.getValueAt(row, 7).toString()), Integer.valueOf(tableau.getValueAt(row, 8).toString()));
 				new ModifyCircuit(circuit);

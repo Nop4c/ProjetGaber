@@ -87,7 +87,10 @@ public class ModifyCircuit {
 			tf3 = new JTextField(circuit.getPaysDepart());
 			tf4 = new JTextField(circuit.getVilleArrivee());
 			tf5 = new JTextField(circuit.getPaysArrivee());
-			tf6 = new JTextField(circuit.getDateDepart().getTime().toString());
+			System.out.println(circuit.getDescriptif());
+			System.out.println(circuit.getDateDepart());
+			System.out.println(circuit.getDateDepart().toString());
+			tf6 = new JTextField(circuit.getDateDepart().toString());
 			tf7 = new JTextField(String.valueOf(circuit.getNbrPlaceDisponible()));
 			tf8 = new JTextField(String.valueOf(circuit.getDuree()));
 			tf9 = new JTextField(String.valueOf(circuit.getPrixInscription()));
@@ -159,7 +162,6 @@ public class ModifyCircuit {
 				}else if(circuit == null){
 					Random rand = new Random(); 
 		    		int nombreAleatoire = rand.nextInt(10000 - 0 + 1) ;
-		    		System.out.println(nombreAleatoire);
 		    		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		    		Date date = null;
 					try {

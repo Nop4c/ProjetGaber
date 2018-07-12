@@ -133,5 +133,30 @@ public class ModelReq {
 		
 	}
 
+	public void updateCircuit(Circuit circuit) throws SQLException {
+		 openBDD();
+		
+		 
+		 pstmt = con.prepareStatement("UPDATE Circuit set descriptif = ?, villedepart = ?, paysdepart = ?, villeArrivee = ?, paysArrivee = ?, dateDepart = ?, "
+		 		+ "nbrPlaceDisponible = ?, duree = ?, prixInscription = ?)"
+		 		+ " Where Id = ");
+		 pstmt.setInt(1, circuit.getId());
+		 pstmt.setString(2, circuit.getDescriptif());
+		 pstmt.setString(3, circuit.getVilleDepart());
+		 pstmt.setString(4, circuit.getPaysDepart());
+		 pstmt.setString(5, circuit.getVilleArrivee());
+		 pstmt.setString(6, circuit.getPaysArrivee());
+		 Calendar calendar = circuit.getDateDepart();
+	     long date =  calendar.LONG;
+	     java.sql.Date date_sql = new java.sql.Date(date);
+		 pstmt.setDate(7, date_sql);
+		 pstmt.setInt(8, circuit.getNbrPlaceDisponible());
+		 pstmt.setInt(9, circuit.getDuree());
+		 pstmt.setInt(10, circuit.getPrixInscription());
+		 
+		 pstmt.executeUpdate();
 
+		 closeBDD();
+		
+	}
 }
