@@ -64,10 +64,8 @@ public class ModelReq {
 		 pstmt.setInt(1, client.getId());
 		 pstmt.setString(2, client.getNom());
 		 pstmt.setString(3, client.getPrenom());
-		 Calendar calendar = client.getDate();
-	     long date =  calendar.LONG;
-	     java.sql.Date date_sql = new java.sql.Date(date);
-		 pstmt.setDate(4, date_sql);
+		 Date sqlDate = new Date(client.getDate().getTimeInMillis());
+		 pstmt.setDate(4, sqlDate);
 		 pstmt.setString(5, mdp);
 		 
 		 pstmt.executeUpdate();
@@ -157,7 +155,6 @@ public class ModelReq {
 	}
 	public void deleteCircuit(Integer id) throws SQLException {
 		 openBDD();
-		
 		 
 		 pstmt = con.prepareStatement("Delete From Circuit WHERE identifiant = ?");
 		 pstmt.setInt(1, id);
@@ -167,4 +164,31 @@ public class ModelReq {
 		 closeBDD();
 		
 	}
+	
+	public List <Client> getListClient() throws SQLException {
+		List <Client> listClient = new ArrayList<>();
+		 openBDD();
+		 pstmt = con.prepareStatement("SELECT * from Client");
+		 rs = pstmt.executeQuery();
+		 while(rs.next()) {
+			 Calendar calendar = Calendar.getInstance();
+			 calendar.setTime(rs.getDate(4));
+			 Client client = new Client(rs.getInt(1),rs.getString(2), rs.getString(3), calendar);
+			 listClient.add(client);
+		 }
+		 closeBDD();
+		 return listClient;
+		 
+	}
+	public void deleteClient(Integer id) throws SQLException {
+		 openBDD();
+		 
+		 pstmt = con.prepareStatement("Delete From Client WHERE id = ?");
+		 pstmt.setInt(1, id);
+
+		 pstmt.executeUpdate();
+
+		 closeBDD();	
+	}
+	
 }

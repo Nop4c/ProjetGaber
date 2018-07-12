@@ -106,7 +106,6 @@ public class Login {
 			public void actionPerformed(ActionEvent e)
 			{
 				new CreateUser();
-				frame.dispose();
 			}
 		});
 	}

@@ -33,7 +33,6 @@ public class CreateUser {
 	 private JTextField tf4;
 	 private JPasswordField p1;
 	 private JButton btn1;
-	 private JButton btn2;
 	 private JOptionPane jop1;
 	 private JOptionPane jop2;
 	 
@@ -52,7 +51,6 @@ public class CreateUser {
 	  tf4 = new JTextField();
 	  p1 = new JPasswordField();
 	  btn1 = new JButton("Valider");
-	  btn2 = new JButton("Retour");
 	   
 	  l1.setBounds(80, 30, 400, 30);
 	  l2.setBounds(80, 70, 200, 30);
@@ -64,7 +62,6 @@ public class CreateUser {
 	  tf3.setBounds(300, 150, 200, 30);
 	  p1.setBounds(300, 190, 200, 30);
 	  btn1.setBounds(150, 260, 100, 30);
-	  btn2.setBounds(430, 290, 150, 30);
 	 
 	  frame.add(l1);
 	  frame.add(l2);
@@ -76,7 +73,6 @@ public class CreateUser {
 	  frame.add(tf3);
 	  frame.add(p1);
 	  frame.add(btn1);
-	  frame.add(btn2);
 	 
 	  frame.setSize(600,400);
 	  frame.setLayout(null);
@@ -108,7 +104,6 @@ public class CreateUser {
 					log.createUser(client, String.valueOf(p1.getPassword()));
 					jop1 = new JOptionPane();
 			    	jop1.showMessageDialog(null, "Votre compte a bien été créé", "Information", JOptionPane.INFORMATION_MESSAGE);
-			    	new Login();
 			    	frame.dispose();
 				} catch (SQLException | ParseException e1) {
 					// TODO Auto-generated catch block
@@ -118,14 +113,5 @@ public class CreateUser {
 		    	}
 		    }
 	 });
-	  btn2.addActionListener( new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent e)
-		    {
-		       new Login();
-		       frame.dispose();
-		    }
-	 });
-	  
 	}
 }

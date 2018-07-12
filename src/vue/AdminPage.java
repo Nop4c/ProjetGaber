@@ -31,6 +31,7 @@ public class AdminPage {
 	private JButton btn3;
 	private JButton btn4;
 	private JButton btn5;
+	private JButton btn6;
 	private JTable tableau;
 	private JScrollPane scrollPane;
 
@@ -47,6 +48,7 @@ public class AdminPage {
 		btn3 = new JButton("Modifier");
 		btn4 = new JButton("Supprimer");
 		btn5 = new JButton("Refresh");
+		btn6 = new JButton("Liste des clients");
 		  ModelReq req =new ModelReq();
 		  List<Circuit> listCircuit = req.getListCircuit();
 		  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -76,6 +78,7 @@ public class AdminPage {
 		btn3.setBounds(800, 850, 150, 30);
 		btn4.setBounds(1000, 850, 150, 30);
 		btn5.setBounds(1700, 850, 150, 30);
+		btn6.setBounds(1750, 450, 160, 30);
 		scrollPane.setBounds(100,130,1600,700);
 
 		frame.add(l1);
@@ -85,6 +88,7 @@ public class AdminPage {
 		frame.add(btn3);
 		frame.add(btn4);
 		frame.add(btn5);
+		frame.add(btn6);
 		frame.add(scrollPane);
 
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -155,6 +159,20 @@ public class AdminPage {
 				}
 			       
 			    }
+		 });
+
+		  btn6.addActionListener( new ActionListener()
+			{
+			    public void actionPerformed(ActionEvent e)
+			    {
+					try {
+						new ListClient();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			    }
+			       
 		 });
 
 	}
