@@ -36,7 +36,7 @@ public class Login {
 		tf1 = new JTextField();
 		p1 = new JPasswordField();
 		btn1 = new JButton("Valider");
-		btn2 = new JButton("Cr�er un compte");
+		btn2 = new JButton("Créer un compte");
 
 		l1.setBounds(80, 30, 400, 30);
 		l2.setBounds(80, 70, 200, 30);
@@ -83,7 +83,8 @@ public class Login {
 							String nom = tabLogin[0];
 							String prenom = tabLogin[1];
 							if(log.getLoginPassword(nom, prenom, String.valueOf(p1.getPassword()))) {
-								Client client = new Client(nom, prenom);
+								ModelReq req = new ModelReq();
+								Client client = req.getClientByName(nom, prenom);
 								new ListCircuit(client);
 								frame.dispose();
 							}else {

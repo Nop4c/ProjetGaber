@@ -76,8 +76,8 @@ public class AdminPage {
 		btn3.setBounds(800, 850, 150, 30);
 		btn4.setBounds(1000, 850, 150, 30);
 		btn5.setBounds(1700, 850, 150, 30);
-		btn6.setBounds(1750, 450, 160, 30);
-		btn7.setBounds(900, 950, 150, 30);
+		btn6.setBounds(1725, 450, 160, 30);
+		btn7.setBounds(1725, 490, 160, 30);
 		scrollPane.setBounds(100,130,1600,700);
 
 		frame.add(l1);
@@ -182,11 +182,11 @@ public class AdminPage {
 						Service service = new Service();
 						int row = tableau.getSelectedRow();
 						try {
-							new ListEtape(Integer.valueOf(tableau.getValueAt(row, 0).toString()));
+							new ListEtape(req.getCircuitById(Integer.valueOf(tableau.getValueAt(row, 0).toString())));
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
-						
+						  
 					}
 				});
 	}

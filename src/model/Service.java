@@ -30,5 +30,11 @@ public class Service {
 		    }
 		    return calendar;
 		  }
+	  
+	  public int calculPrix(int place, int prix) {
+		  int res = place * prix;
+		  return res;
+		  
+	  }
 	
 }

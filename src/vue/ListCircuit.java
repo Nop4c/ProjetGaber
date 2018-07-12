@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import model.ModelReq;
+import model.Service;
 import refClass.Circuit;
 import refClass.Client;
 
@@ -22,6 +23,7 @@ public class ListCircuit {
 	 private JLabel l2;
 	 private JButton btn1;
 	 private JButton btn2;
+	 private JButton btn3;
 	 private JTable tableau;
 	 private JScrollPane scrollPane;
 	public  ListCircuit(Client client) throws SQLException {
@@ -38,6 +40,7 @@ public class ListCircuit {
 	 
 	  btn1 = new JButton("En savoir plus");
 	  btn2 = new JButton("Déconnexion");
+	  btn3 = new JButton("Mes réservations");
 	  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	  Object[][] data = new Object[listCircuit.size()][10];
 	  
@@ -63,12 +66,14 @@ public class ListCircuit {
 	  scrollPane = new JScrollPane(tableau);
 	  btn1.setBounds(600, 850, 150, 30);
 	  btn2.setBounds(1700, 70, 150, 30);
+	  btn3.setBounds(1000, 850, 150, 30);
 	  scrollPane.setBounds(100,130,1600,700);
 	  
 	  frame.add(l1);
 	  frame.add(l2);
 	  frame.add(btn1);
 	  frame.add(btn2);
+	  frame.add(btn3);
 	  frame.add(scrollPane);
 	 
 	  frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -82,7 +87,17 @@ public class ListCircuit {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		       new InfoCircuit();
+		       
+		       Service service = new Service();
+				int row = tableau.getSelectedRow();
+				Circuit circuit = new Circuit(Integer.valueOf(tableau.getValueAt(row, 0).toString()),tableau.getValueAt(row, 1).toString(), tableau.getValueAt(row, 2).toString(), tableau.getValueAt(row, 3).toString(), tableau.getValueAt(row, 4).toString(), 
+						tableau.getValueAt(row, 5).toString(), service.stringToCalendar(tableau.getValueAt(row, 6).toString()), Integer.valueOf(tableau.getValueAt(row, 7).toString()), Integer.valueOf(tableau.getValueAt(row, 8).toString()), Integer.valueOf(tableau.getValueAt(row, 9).toString()));
+				try {
+					new InfoCircuit(circuit, client);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    }
 	 });
 	  
@@ -92,6 +107,18 @@ public class ListCircuit {
 		    {
 		       new Login();
 		       frame.dispose();
+		    }
+	 });
+	  
+	  btn3.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	try {
+					new ListReservation(client);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		    }
 	 });
 	  

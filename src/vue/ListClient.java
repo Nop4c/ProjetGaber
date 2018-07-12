@@ -89,8 +89,8 @@ public class ListClient {
 				{
 				    public void actionPerformed(ActionEvent e)
 				    {
-				       new Login();
-				       frame.dispose();
+				      // new Login();
+				       //frame.dispose();
 				    }
 			 });
 			  
