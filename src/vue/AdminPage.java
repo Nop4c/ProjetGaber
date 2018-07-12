@@ -127,7 +127,19 @@ public class AdminPage {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				int row = tableau.getSelectedRow();
+				ModelReq req= new ModelReq();
+				try {
+					req.deleteCircuit(Integer.valueOf(tableau.getValueAt(row, 0).toString()));
+					frame.dispose();
+					new AdminPage();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

@@ -155,4 +155,16 @@ public class ModelReq {
 		 closeBDD();
 		
 	}
+	public void deleteCircuit(Integer id) throws SQLException {
+		 openBDD();
+		
+		 
+		 pstmt = con.prepareStatement("Delete From Circuit WHERE identifiant = ?");
+		 pstmt.setInt(1, id);
+
+		 pstmt.executeUpdate();
+
+		 closeBDD();
+		
+	}
 }
