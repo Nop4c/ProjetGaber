@@ -4,9 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -14,10 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.ModelReq;
+import model.Service;
 import refClass.Circuit;
 
 public class ModifyCircuit {
@@ -47,7 +45,7 @@ public class ModifyCircuit {
 	private JTextField tf7;
 	private JTextField tf8;
 	private JTextField tf9;
-	
+
 	private JButton btn1;
 	private JButton btn2;
 
@@ -56,6 +54,8 @@ public class ModifyCircuit {
 	public  ModifyCircuit(Circuit circuit) {
 		JFrame frame = new JFrame("Ajouter/Modifier");
 		l1 = new JLabel("Ajouter/Modifier");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
 		l1.setFont(new Font("Arial", Font.BOLD, 20));
 
 		l2 = new JLabel("Descrtiptif");
@@ -87,10 +87,7 @@ public class ModifyCircuit {
 			tf3 = new JTextField(circuit.getPaysDepart());
 			tf4 = new JTextField(circuit.getVilleArrivee());
 			tf5 = new JTextField(circuit.getPaysArrivee());
-			System.out.println(circuit.getDescriptif());
-			System.out.println(circuit.getDateDepart());
-			System.out.println(circuit.getDateDepart().toString());
-			tf6 = new JTextField(circuit.getDateDepart().toString());
+			tf6 = new JTextField(sdf.format(circuit.getDateDepart().getTime()));
 			tf7 = new JTextField(String.valueOf(circuit.getNbrPlaceDisponible()));
 			tf8 = new JTextField(String.valueOf(circuit.getDuree()));
 			tf9 = new JTextField(String.valueOf(circuit.getPrixInscription()));
@@ -161,19 +158,12 @@ public class ModifyCircuit {
 
 				}else if(circuit == null){
 					Random rand = new Random(); 
-		    		int nombreAleatoire = rand.nextInt(10000 - 0 + 1) ;
-		    		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		    		Date date = null;
-					try {
-						date = sdf.parse(tf6.getText());
-					} catch (ParseException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-		    		Calendar cal = Calendar.getInstance();
-		    		cal.setTime(date);
+					int nombreAleatoire = rand.nextInt(10000 - 0 + 1) ;
+					Date date = null;
+					String dateText = tf6.getText();
+					Service service = new Service();
 					Circuit add = new Circuit(nombreAleatoire, tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(),
-							tf5.getText(), cal , Integer.valueOf(tf7.getText()), Integer.valueOf(tf8.getText()), Integer.valueOf(tf9.getText()));
+							tf5.getText(), service.stringToCalendar(dateText) , Integer.valueOf(tf7.getText()), Integer.valueOf(tf8.getText()), Integer.valueOf(tf9.getText()));
 					ModelReq req= new ModelReq();
 					try {
 						req.createCircuit(add);
@@ -182,7 +172,26 @@ public class ModifyCircuit {
 					}
 					jop1.showMessageDialog(null, "Le circuit a bien été ajouté", "Information", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
+					try {
+						new AdminPage();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					frame.dispose();
 				} else {
+					
+					ModelReq req= new ModelReq();
+					try {
+						String dateText = tf6.getText();
+						Service service = new Service();
+						
+						Circuit modify = new Circuit(circuit.getId(), tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(),
+								tf5.getText(), service.stringToCalendar(dateText) , Integer.valueOf(tf7.getText()), Integer.valueOf(tf8.getText()), Integer.valueOf(tf9.getText()));
+						req.updateCircuit(modify);
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					jop1.showMessageDialog(null, "Le circuit a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
 					try {

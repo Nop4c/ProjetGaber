@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -32,23 +33,25 @@ public class ListCircuit {
 	  
 	  ModelReq req =new ModelReq();
 	  List<Circuit> listCircuit = req.getListCircuit();
-	  String [] title = {"Description", "Ville de départ", "Pays de départ", "Ville d'arrivée", "Pays d'arrivée", 
+	  String [] title = {"Référence", "Description", "Ville de départ", "Pays de départ", "Ville d'arrivée", "Pays d'arrivée", 
 			  "Date de départ", "Nombre de place disponible","Durée", "Prix"};
 	 
 	  btn1 = new JButton("En savoir plus");
 	  btn2 = new JButton("Déconnexion");
-	  Object[][] data = new Object[listCircuit.size()][9];
+	  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	  Object[][] data = new Object[listCircuit.size()][10];
 	  
 	 for(int i = 0; i < listCircuit.size(); i++) {
-		 data[i][0]= listCircuit.get(i).getDescriptif();
-		 data[i][1]= listCircuit.get(i).getVilleDepart();
-		 data[i][2]= listCircuit.get(i).getPaysDepart();
-		 data[i][3]= listCircuit.get(i).getVilleArrivee();
-		 data[i][4]= listCircuit.get(i).getVilleDepart();
-		 data[i][5]= listCircuit.get(i).getDateDepart().getTime();
-		 data[i][6]= listCircuit.get(i).getNbrPlaceDisponible();
-		 data[i][7]= listCircuit.get(i).getDuree();
-		 data[i][8]= listCircuit.get(i).getPrixInscription();
+		 data[i][0]= listCircuit.get(i).getId();
+		 data[i][1]= listCircuit.get(i).getDescriptif();
+		 data[i][2]= listCircuit.get(i).getVilleDepart();
+		 data[i][3]= listCircuit.get(i).getPaysDepart();
+		 data[i][4]= listCircuit.get(i).getVilleArrivee();
+		 data[i][5]= listCircuit.get(i).getPaysArrivee();
+		 data[i][6]= sdf.format(listCircuit.get(i).getDateDepart().getTime());
+		 data[i][7]= listCircuit.get(i).getNbrPlaceDisponible();
+		 data[i][8]= listCircuit.get(i).getDuree();
+		 data[i][9]= listCircuit.get(i).getPrixInscription();
 	 }
 	 
 	  

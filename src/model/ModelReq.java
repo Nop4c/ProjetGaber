@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.sql.Date;
 
 import refClass.Circuit;
 import refClass.Client;
@@ -99,7 +99,7 @@ public class ModelReq {
 		 while(rs.next()) {
 			 Calendar calendar = Calendar.getInstance();
 			 calendar.setTime(rs.getDate(7));
-			 Circuit circuit = new Circuit(rs.getString(2), rs.getString(3), rs.getString(4) ,  rs.getString(5), rs.getString(6), calendar,  rs.getInt(8), rs.getInt(9), rs.getInt(10));
+			 Circuit circuit = new Circuit(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4) ,  rs.getString(5), rs.getString(6), calendar,  rs.getInt(8), rs.getInt(9), rs.getInt(10));
 			 listCircuit.add(circuit);
 		 }
 		 closeBDD();
@@ -119,10 +119,8 @@ public class ModelReq {
 		 pstmt.setString(4, circuit.getPaysDepart());
 		 pstmt.setString(5, circuit.getVilleArrivee());
 		 pstmt.setString(6, circuit.getPaysArrivee());
-		 Calendar calendar = circuit.getDateDepart();
-	     long date =  calendar.LONG;
-	     java.sql.Date date_sql = new java.sql.Date(date);
-		 pstmt.setDate(7, date_sql);
+	     Date sqlDate = new Date(circuit.getDateDepart().getTimeInMillis());
+		 pstmt.setDate(7, sqlDate);
 		 pstmt.setInt(8, circuit.getNbrPlaceDisponible());
 		 pstmt.setInt(9, circuit.getDuree());
 		 pstmt.setInt(10, circuit.getPrixInscription());
@@ -138,22 +136,20 @@ public class ModelReq {
 		
 		 
 		 pstmt = con.prepareStatement("UPDATE Circuit set descriptif = ?, villedepart = ?, paysdepart = ?, villeArrivee = ?, paysArrivee = ?, dateDepart = ?, "
-		 		+ "nbrPlaceDisponible = ?, duree = ?, prixInscription = ?)"
-		 		+ " Where Id = ");
-		 pstmt.setInt(1, circuit.getId());
-		 pstmt.setString(2, circuit.getDescriptif());
-		 pstmt.setString(3, circuit.getVilleDepart());
-		 pstmt.setString(4, circuit.getPaysDepart());
-		 pstmt.setString(5, circuit.getVilleArrivee());
-		 pstmt.setString(6, circuit.getPaysArrivee());
-		 Calendar calendar = circuit.getDateDepart();
-	     long date =  calendar.LONG;
-	     java.sql.Date date_sql = new java.sql.Date(date);
-		 pstmt.setDate(7, date_sql);
-		 pstmt.setInt(8, circuit.getNbrPlaceDisponible());
-		 pstmt.setInt(9, circuit.getDuree());
-		 pstmt.setInt(10, circuit.getPrixInscription());
-		 
+		 		+ "nbrPlaceDisponible = ?, duree = ?, prixInscription = ?"
+		 		+ " WHERE identifiant = ?");
+
+		 pstmt.setString(1, circuit.getDescriptif());
+		 pstmt.setString(2, circuit.getVilleDepart());
+		 pstmt.setString(3, circuit.getPaysDepart());
+		 pstmt.setString(4, circuit.getVilleArrivee());
+		 pstmt.setString(5, circuit.getPaysArrivee());
+	     Date sqlDate = new Date(circuit.getDateDepart().getTimeInMillis());
+		 pstmt.setDate(6,  sqlDate);
+		 pstmt.setInt(7, circuit.getNbrPlaceDisponible());
+		 pstmt.setInt(8, circuit.getDuree());
+		 pstmt.setInt(9, circuit.getPrixInscription());
+		 pstmt.setInt(10, circuit.getId());
 		 pstmt.executeUpdate();
 
 		 closeBDD();
