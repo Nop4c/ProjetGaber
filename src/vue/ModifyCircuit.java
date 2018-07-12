@@ -178,7 +178,7 @@ public class ModifyCircuit {
 						e1.printStackTrace();
 					}
 					frame.dispose();
-				} else {
+				} else { 
 					
 					ModelReq req= new ModelReq();
 					try {
