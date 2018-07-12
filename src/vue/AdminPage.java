@@ -4,12 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -21,6 +16,7 @@ import javax.swing.JTable;
 import model.ModelReq;
 import model.Service;
 import refClass.Circuit;
+import refClass.Etape;
 
 public class AdminPage {
 
@@ -32,6 +28,7 @@ public class AdminPage {
 	private JButton btn4;
 	private JButton btn5;
 	private JButton btn6;
+	private JButton btn7;
 	private JTable tableau;
 	private JScrollPane scrollPane;
 
@@ -49,6 +46,7 @@ public class AdminPage {
 		btn4 = new JButton("Supprimer");
 		btn5 = new JButton("Refresh");
 		btn6 = new JButton("Liste des clients");
+		btn7 = new JButton("Voir les étapes");
 		  ModelReq req =new ModelReq();
 		  List<Circuit> listCircuit = req.getListCircuit();
 		  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -79,6 +77,7 @@ public class AdminPage {
 		btn4.setBounds(1000, 850, 150, 30);
 		btn5.setBounds(1700, 850, 150, 30);
 		btn6.setBounds(1750, 450, 160, 30);
+		btn7.setBounds(900, 950, 150, 30);
 		scrollPane.setBounds(100,130,1600,700);
 
 		frame.add(l1);
@@ -89,6 +88,7 @@ public class AdminPage {
 		frame.add(btn4);
 		frame.add(btn5);
 		frame.add(btn6);
+		frame.add(btn7);
 		frame.add(scrollPane);
 
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -174,7 +174,21 @@ public class AdminPage {
 			    }
 			       
 		 });
+			 btn7.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
 
+						Service service = new Service();
+						int row = tableau.getSelectedRow();
+						try {
+							new ListEtape(Integer.valueOf(tableau.getValueAt(row, 0).toString()));
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					}
+				});
 	}
 
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.sql.Date;
 
 import refClass.Circuit;
 import refClass.Client;
+import refClass.Etape;
 
 public class ModelReq {
 	ConnexionBDD conn;
@@ -60,7 +61,7 @@ public class ModelReq {
 		 openBDD();
 		
 		 
-		 pstmt = con.prepareStatement("INSERT INTO Client(id, nom, prenom, date_naissance, mot_De_Passe) VALUES (?,?,?,?,?)");
+		 pstmt = con.prepareStatement("INSERT INTO Client(id, client_nom, client_prenom, client_date_naissance, mot_De_Passe) VALUES (?,?,?,?,?)");
 		 pstmt.setInt(1, client.getId());
 		 pstmt.setString(2, client.getNom());
 		 pstmt.setString(3, client.getPrenom());
@@ -76,7 +77,7 @@ public class ModelReq {
 	
 	public boolean getLoginPassword(String nom, String prenom, String password) throws SQLException {
 		 openBDD();
-		 pstmt = con.prepareStatement("SELECT * from Client where nom = ? and  prenom = ? and Mot_De_Passe = ?");
+		 pstmt = con.prepareStatement("SELECT * from Client where client_nom = ? and  client_prenom = ? and Mot_De_Passe = ?");
 		 pstmt.setString(1, nom);
 		 pstmt.setString(2, prenom);
 		 pstmt.setString(3, password);
@@ -153,6 +154,22 @@ public class ModelReq {
 		 closeBDD();
 		
 	}
+	public List <Etape> getListEtape(Integer id) throws SQLException {
+		List <Etape> listEtape = new ArrayList<>();
+		 openBDD();
+		 pstmt = con.prepareStatement("SELECT * from Etape WHERE identifiantcircuit = ?");
+		 pstmt.setInt(1, id);
+		 rs = pstmt.executeQuery();
+		 while(rs.next()) {
+			 Calendar calendar = Calendar.getInstance();
+			 calendar.setTime(rs.getDate(6));
+			 Etape etape = new Etape(rs.getInt(2),calendar,  rs.getInt(7));
+			 listEtape.add(etape);
+		 }
+		 closeBDD();
+		 return listEtape;
+	}
+		 
 	public void deleteCircuit(Integer id) throws SQLException {
 		 openBDD();
 		 
