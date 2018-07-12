@@ -1,19 +1,36 @@
 package refClass;
 
+import java.util.Calendar;
+
 public class Circuit {
 
+	private int id;
 	private String descriptif;
 	private String villeDepart;
 	private String paysDepart;
 	private String villeArrivee;
 	private String paysArrivee;
-	private String dateDepart;
+	private Calendar dateDepart;
 	private int nbrPlaceDisponible;
 	private int duree;
 	private int prixInscription;
 	
-	public Circuit(String descriptif, String villeDepart, String paysDepart, String villeArrivee,
-			String paysArrivee, String dateDepart, int nbrPlaceDisponible, int duree, int prixInscription) {
+	public Circuit(int id, String descriptif, String villeDepart, String paysDepart, String villeArrivee,
+			String paysArrivee, Calendar dateDepart, int nbrPlaceDisponible, int duree, int prixInscription) {
+		super();
+		this.id = id;
+		this.descriptif = descriptif;
+		this.villeDepart = villeDepart;
+		this.paysDepart = paysDepart;
+		this.villeArrivee = villeArrivee;
+		this.paysArrivee = paysArrivee;
+		this.dateDepart = dateDepart;
+		this.nbrPlaceDisponible = nbrPlaceDisponible;
+		this.duree = duree;
+		this.prixInscription = prixInscription;
+	}
+	public Circuit( String descriptif, String villeDepart, String paysDepart, String villeArrivee,
+			String paysArrivee, Calendar dateDepart, int nbrPlaceDisponible, int duree, int prixInscription) {
 		super();
 		this.descriptif = descriptif;
 		this.villeDepart = villeDepart;
@@ -66,11 +83,11 @@ public class Circuit {
 		this.paysArrivee = paysArrivee;
 	}
 
-	public String getDateDepart() {
+	public Calendar getDateDepart() {
 		return dateDepart;
 	}
 
-	public void setDateDepart(String dateDepart) {
+	public void setDateDepart(Calendar dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 
@@ -96,6 +113,14 @@ public class Circuit {
 
 	public void setPrixInscription(int prixInscription) {
 		this.prixInscription = prixInscription;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

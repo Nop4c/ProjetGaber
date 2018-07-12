@@ -3,6 +3,12 @@ package vue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import model.ModelReq;
 import refClass.Circuit;
 
 public class ModifyCircuit {
@@ -52,11 +59,11 @@ public class ModifyCircuit {
 		l1.setFont(new Font("Arial", Font.BOLD, 20));
 
 		l2 = new JLabel("Descrtiptif");
-		l3 = new JLabel("Ville de départ");
-		l4 = new JLabel("Pays de départ");
-		l5 = new JLabel("Ville d'arrivée");
-		l6 = new JLabel("Pays d'arrivée");
-		l7 = new JLabel("Date de départ");
+		l3 = new JLabel("Ville de dÃ©part");
+		l4 = new JLabel("Pays de dÃ©part");
+		l5 = new JLabel("Ville d'arrivÃ©e");
+		l6 = new JLabel("Pays d'arrivÃ©e");
+		l7 = new JLabel("Date de dÃ©part");
 		l8 = new JLabel("Nombre de place disponible");
 		l9 = new JLabel("Duree");
 		l10 = new JLabel("Prix");
@@ -80,7 +87,7 @@ public class ModifyCircuit {
 			tf3 = new JTextField(circuit.getPaysDepart());
 			tf4 = new JTextField(circuit.getVilleArrivee());
 			tf5 = new JTextField(circuit.getPaysArrivee());
-			tf6 = new JTextField(circuit.getDateDepart());
+			tf6 = new JTextField(circuit.getDateDepart().getTime().toString());
 			tf7 = new JTextField(String.valueOf(circuit.getNbrPlaceDisponible()));
 			tf8 = new JTextField(String.valueOf(circuit.getDuree()));
 			tf9 = new JTextField(String.valueOf(circuit.getPrixInscription()));
@@ -150,11 +157,37 @@ public class ModifyCircuit {
 					jop1.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 
 				}else if(circuit == null){
-					jop1.showMessageDialog(null, "Le circuit a bien été ajouté", "Information", JOptionPane.INFORMATION_MESSAGE);
+					Random rand = new Random(); 
+		    		int nombreAleatoire = rand.nextInt(10000 - 0 + 1) ;
+		    		System.out.println(nombreAleatoire);
+		    		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		    		Date date = null;
+					try {
+						date = sdf.parse(tf6.getText());
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+		    		Calendar cal = Calendar.getInstance();
+		    		cal.setTime(date);
+					Circuit add = new Circuit(nombreAleatoire, tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(),
+							tf5.getText(), cal , Integer.valueOf(tf7.getText()), Integer.valueOf(tf8.getText()), Integer.valueOf(tf9.getText()));
+					ModelReq req= new ModelReq();
+					try {
+						req.createCircuit(add);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					jop1.showMessageDialog(null, "Le circuit a bien Ã©tÃ© ajoutÃ©", "Information", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
 				} else {
-					jop1.showMessageDialog(null, "Le circuit a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
+					jop1.showMessageDialog(null, "Le circuit a bien Ã©tÃ© modifiÃ©", "Information", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
+					try {
+						new AdminPage();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});

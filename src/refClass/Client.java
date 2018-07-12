@@ -16,7 +16,10 @@ public class Client {
 		this.prenom = prenom;
 		this.date = date;
 	}
-
+	public Client(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
+	}
 
 	public int getId() {
 		return id;

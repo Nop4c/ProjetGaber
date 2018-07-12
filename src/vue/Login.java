@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.ModelReq;
+import refClass.Client;
 
 public class Login {
 
@@ -65,7 +66,12 @@ public class Login {
 			{
 				ModelReq log = new ModelReq();
 				if("admin".equals(tf1.getText()) && ("admin".equals(String.valueOf(p1.getPassword())))){
-					new AdminPage();
+					try {
+						new AdminPage();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					frame.dispose();
 				}else {
 					try {
@@ -77,7 +83,8 @@ public class Login {
 							String nom = tabLogin[0];
 							String prenom = tabLogin[1];
 							if(log.getLoginPassword(nom, prenom, String.valueOf(p1.getPassword()))) {
-								new ListCircuit();
+								Client client = new Client(nom, prenom);
+								new ListCircuit(client);
 								frame.dispose();
 							}else {
 								jop1 = new JOptionPane();
