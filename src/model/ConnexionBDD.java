@@ -7,48 +7,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnexionBDD {
+	 Connection con = null;
+	 ResultSet rs = null;
+	 PreparedStatement pstmt = null;
 
-	public static void main(String[] args) {
-		 Connection con = null;
-		 ResultSet rs = null;
-		 PreparedStatement pstmt = null;
+	 public ConnexionBDD() {};
+	 
+	public void openBDD(){
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
            
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:root","admin","azerty");
-            pstmt = con.prepareStatement("SELECT * FROM CLIENT");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:root","sys as sysdba","root");
             
-            rs = pstmt.executeQuery();
-            while(rs.next()) {
-            	System.out.println(rs.getString(2));
-            }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             return;
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        }
+	}
+	
+	public void closeBDD() {
+		if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        
-    }
+        if (pstmt != null) {
+            try {
+                pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}
 	
 }

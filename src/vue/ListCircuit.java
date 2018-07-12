@@ -22,11 +22,12 @@ public class ListCircuit {
 	  l1 = new JLabel("Liste des circuits");
 	  l1.setFont(new Font("Arial", Font.BOLD, 20));
 	  l2 = new JLabel("Bienvenue Nopac !");
-	  String [] title = {"Description", "Ville de départ", "Pays de départ", "Ville d'arrivée", "Pays d'arrivée", 
-			  "Date de départ", "Nombre de place disponible","Durée", "Prix"};
+	  
+	  String [] title = {"Description", "Ville de dÃ©part", "Pays de dÃ©part", "Ville d'arrivÃ©e", "Pays d'arrivÃ©e", 
+			  "Date de dÃ©part", "Nombre de place disponible","DurÃ©e", "Prix"};
 	 
 	  btn1 = new JButton("En savoir plus");
-	  btn2 = new JButton("Déconnexion");
+	  btn2 = new JButton("DÃ©connexion");
 	  
 	  Object[][] data = {{"Cysboy", "28 ans", "1.80 m","BZHHydde", "28 ans", "1.80 m","IamBow", "24 ans", "1.90 m"}, {"Cysboy", "28 ans", "1.80 m","BZHHydde", "28 ans", "1.80 m","IamBow", "24 ans", "1.90 m"}};
 	     
